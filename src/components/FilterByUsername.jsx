@@ -1,19 +1,8 @@
-import { useState } from "react";
-
-function FilterByUsername({ todos, setTodos, users }) {
-    const [selectedUserId, setSelectedUserId] = useState(null);
-
-    const handleFilter = (userId) => {
-        setSelectedUserId(userId);
-        setTodos(
-            todos.filter(todo => !userId || todo.userId === selectedUserId)
-        );
-    }
-
+function FilterByUsername({ setSelectedUserId, users }) {
     return (
         <select
             className="form-select"
-            onChange={(e) => handleFilter(Number(e.target.value) || null)}
+            onChange={(e) => setSelectedUserId(Number(e.target.value) || null)}
         >
             <option value="">All Users</option>
             {users.map(user => (
@@ -22,7 +11,7 @@ function FilterByUsername({ todos, setTodos, users }) {
                 </option>
             ))}
         </select>
-    )
+    );
 }
 
 export default FilterByUsername;

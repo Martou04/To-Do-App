@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useMemo } from 'react';
 import UncompletedTodos from './UncompletedTodos';
 import CompletedTodos from './CompletedTodos';
 import FilterByUsername from './FilterByUsername';
@@ -6,6 +6,13 @@ import FilterByUsername from './FilterByUsername';
 function TodoContainer({ todos, setTodos, users }) {
   const [uncompletedSortOrder, setUncompletedSortOrder] = useState('asc');
   const [completedSortOrder, setCompletedSortOrder] = useState('asc');
+  const [selectedUserId, setSelectedUserId] = useState(null);
+
+  const filteredTodos = useMemo(() => {
+    return selectedUserId
+    ?todos.filter(todo => todo.userId === selectedUserId)
+    :todos;
+  }, [todos, selectedUserId]);
 
   return (
     <div className="container py-4">
@@ -14,8 +21,7 @@ function TodoContainer({ todos, setTodos, users }) {
           <div className="row g-3 align-items-end mb-4">
             <div className="col-6">
               <FilterByUsername
-                todos={todos}
-                setTodos={setTodos}
+                setSelectedUserId={setSelectedUserId}
                 users={users}
               />
             </div>
@@ -34,7 +40,7 @@ function TodoContainer({ todos, setTodos, users }) {
           <div className="p-4 bg-white rounded-4 shadow-sm">
             <h5 className="fw-semibold mb-3">Pending:</h5>
             <UncompletedTodos
-              todos={todos}
+              todos={filteredTodos}
               setTodos={setTodos}
               sortOrder={uncompletedSortOrder}
             />
@@ -56,7 +62,7 @@ function TodoContainer({ todos, setTodos, users }) {
           <div className="p-4 bg-white rounded-4 shadow-sm">
             <h5 className="fw-semibold mb-3">Completed:</h5>
             <CompletedTodos
-              todos={todos}
+              todos={filteredTodos}
               setTodos={setTodos}
               sortOrder={completedSortOrder}
             />
