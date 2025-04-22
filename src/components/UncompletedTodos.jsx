@@ -34,6 +34,7 @@ function UncompletedTodos({ todos, onComplete, sortOrder }) {
                     key={todo.id}
                     todo={todo}
                     onAction={() => onComplete(todo.id)}
+                    buttonClassName="btn btn-success"
                     actionText="Complete"
                 />
             ))}
@@ -53,7 +54,6 @@ function UncompletedTodos({ todos, onComplete, sortOrder }) {
                     />
                 )}
             </div>
-
         </div>
     )
 }

@@ -35,6 +35,7 @@ function CompletedTodos({ todos, onUndo, sortOrder }) {
                     key={todo.id}
                     todo={todo}
                     onAction={() => onUndo(todo.id)}
+                    buttonClassName="btn btn-warning"
                     actionText="Undo"
                 />
             ))}
