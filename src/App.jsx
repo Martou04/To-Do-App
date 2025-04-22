@@ -27,8 +27,6 @@ function App() {
                 })
         ])
             .then(([todosData, usersData]) => {
-                console.log(usersData);
-                
                 setTodos(todosData);
                 setUsers(usersData);
                 setLoading(false);
@@ -56,7 +54,7 @@ function App() {
     }
 
     return (
-        <TodoContainer todos={todos} setTodos={setTodos} />
+        <TodoContainer todos={todos} setTodos={setTodos} users={users} />
     );
 }
 

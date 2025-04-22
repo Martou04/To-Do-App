@@ -1,15 +1,15 @@
 import UncompletedTodos from './UncompletedTodos';
 import CompletedTodos from './CompletedTodos';
-import FilterDropdown from './FilterDropdown';
+import FilterByUsername from './FilterByUsername';
 
-function TodoContainer({ todos, setTodos }) {
+function TodoContainer({ todos, setTodos, users }) {
   return (
     <div className="container py-4">
       <div className="row">
         <div className="col-12 col-md-6 border-end pe-md-4 mb-4">
           <div className="row g-3 align-items-end mb-4">
             <div className="col-6">
-              <FilterDropdown todos={todos} setTodos={setTodos} />
+              <FilterByUsername todos={todos} setTodos={setTodos} users={users} />
             </div>
             <div className="col-6">
               <select className="form-select">
