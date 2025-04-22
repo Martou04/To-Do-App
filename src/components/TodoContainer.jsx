@@ -10,9 +10,29 @@ function TodoContainer({ todos, setTodos, users }) {
 
   const filteredTodos = useMemo(() => {
     return selectedUserId
-    ?todos.filter(todo => todo.userId === selectedUserId)
-    :todos;
+      ? todos.filter(todo => todo.userId === selectedUserId)
+      : todos;
   }, [todos, selectedUserId]);
+
+  const handleComplete = (id) => {
+    setTodos(prevTodos =>
+      prevTodos.map(todo =>
+        todo.id === id
+          ? { ...todo, completed: true, completedDate: Date.now() }
+          : todo
+      )
+    );
+  };
+
+  const handleUndo = (id) => {
+    setTodos(prevTodos =>
+      prevTodos.map(todo =>
+        todo.id === id
+          ? { ...todo, completed: false, completedDate: null }
+          : todo
+      )
+    );
+  };
 
   return (
     <div className="container py-4">
@@ -41,7 +61,7 @@ function TodoContainer({ todos, setTodos, users }) {
             <h5 className="fw-semibold mb-3">Pending:</h5>
             <UncompletedTodos
               todos={filteredTodos}
-              setTodos={setTodos}
+              onComplete={handleComplete}
               sortOrder={uncompletedSortOrder}
             />
           </div>
@@ -63,7 +83,7 @@ function TodoContainer({ todos, setTodos, users }) {
             <h5 className="fw-semibold mb-3">Completed:</h5>
             <CompletedTodos
               todos={filteredTodos}
-              setTodos={setTodos}
+              onUndo={handleUndo}
               sortOrder={completedSortOrder}
             />
           </div>

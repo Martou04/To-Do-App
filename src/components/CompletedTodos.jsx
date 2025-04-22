@@ -2,18 +2,8 @@ import { useState } from "react";
 import TodoItem from "./TodoItem";
 import PaginationButton from "./PaginationButton";
 
-function CompletedTodos({ todos, setTodos, sortOrder }) {
+function CompletedTodos({ todos, onUndo, sortOrder }) {
     const [itemsToShow, setItemsToShow] = useState(10);
-
-    const todoUndoHandler = (id) => {
-        setTodos(prevTodos =>
-            prevTodos.map(todo =>
-                todo.id === id
-                    ? { ...todo, completed: false, completedDate: null }
-                    : todo
-            )
-        );
-    }
 
     const filteredTodos = todos
         .filter(todo => todo.completed)
@@ -44,7 +34,7 @@ function CompletedTodos({ todos, setTodos, sortOrder }) {
                 <TodoItem
                     key={todo.id}
                     todo={todo}
-                    onAction={todoUndoHandler}
+                    onAction={() => onUndo(todo.id)}
                     actionText="Undo"
                 />
             ))}
