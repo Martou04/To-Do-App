@@ -3,20 +3,34 @@ import TodoContainer from './components/TodoContainer';
 
 function App() {
     const [todos, setTodos] = useState([]);
+    const [users, setUsers] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        fetch('https://jsonplaceholder.typicode.com/todos')
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
+        Promise.all([
+            fetch('https://jsonplaceholder.typicode.com/todos')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
 
-                return response.json();
-            })
-            .then(todos => {
-                setTodos(todos);
+                    return response.json();
+                }),
+            fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+
+                    return response.json();
+                })
+        ])
+            .then(([todosData, usersData]) => {
+                console.log(usersData);
+                
+                setTodos(todosData);
+                setUsers(usersData);
                 setLoading(false);
             })
             .catch(error => {
