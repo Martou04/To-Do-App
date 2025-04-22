@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import './App.css'
+import TodoContainer from './components/TodoContainer';
 
 function App() {
     const [todos, setTodos] = useState([]);
@@ -29,20 +29,21 @@ function App() {
         return (
             <div className="d-flex justify-content-center align-items-center">
                 <div className="spinner-border text-primary" role="status">
-                    <span className="visually-hidden">Зареждане...</span>
+                    <span className="visually-hidden">Loading...</span>
                 </div>
             </div>
         );
     }
-    
+
     if (error) {
         return (
             <div className="alert alert-danger text-center">Error: {error}</div>
         );
     }
 
-
-
+    return (
+        <TodoContainer todos={todos} setTodos={setTodos} />
+    );
 }
 
 export default App
