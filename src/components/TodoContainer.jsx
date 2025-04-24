@@ -109,6 +109,7 @@ function TodoContainer({ todos, setTodos, users, loggedInUser }) {
                   <div ref={provided.innerRef} {...provided.droppableProps}>
                     <UncompletedTodos
                       todos={filteredTodos}
+                      loggedInUser={loggedInUser}
                       onComplete={handleComplete}
                       sortOrder={uncompletedSortOrder}
                       isDragDisabled={false}
@@ -139,6 +140,7 @@ function TodoContainer({ todos, setTodos, users, loggedInUser }) {
                   <div ref={provided.innerRef} {...provided.droppableProps}>
                     <CompletedTodos
                       todos={filteredTodos}
+                      loggedInUser={loggedInUser}
                       onUndo={handleUndo}
                       sortOrder={completedSortOrder}
                       isDragDisabled={false}

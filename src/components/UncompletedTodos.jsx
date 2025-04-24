@@ -4,11 +4,11 @@ import { Draggable } from "@hello-pangea/dnd";
 import TodoItem from "./TodoItem";
 import PaginationButton from "./PaginationButton";
 
-function UncompletedTodos({ todos, onComplete, sortOrder, isDragDisabled }) {
+function UncompletedTodos({ todos, loggedInUser, onComplete, sortOrder, isDragDisabled }) {
     const [itemsToShow, setItemsToShow] = useState(10);
 
     const allUncompleted = todos.filter(todo => !todo.completed);
-    
+
     const sorted = allUncompleted.sort((a, b) => {
         if (sortOrder === 'asc') return a.title.localeCompare(b.title);
         if (sortOrder === 'desc') return b.title.localeCompare(a.title);
@@ -46,6 +46,7 @@ function UncompletedTodos({ todos, onComplete, sortOrder, isDragDisabled }) {
                             <TodoItem
                                 key={todo.id}
                                 todo={todo}
+                                loggedInUser={loggedInUser}
                                 onAction={() => onComplete(todo.id)}
                                 buttonClassName="btn btn-success"
                                 actionText="Complete"

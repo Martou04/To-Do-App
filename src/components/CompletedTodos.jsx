@@ -3,7 +3,7 @@ import TodoItem from "./TodoItem";
 import PaginationButton from "./PaginationButton";
 import { Draggable } from "@hello-pangea/dnd";
 
-function CompletedTodos({ todos, onUndo, sortOrder, isDragDisabled }) {
+function CompletedTodos({ todos, loggedInUser, onUndo, sortOrder, isDragDisabled }) {
     const [itemsToShow, setItemsToShow] = useState(10);
 
     const allCompleted = todos.filter(todo => todo.completed);
@@ -48,6 +48,7 @@ function CompletedTodos({ todos, onUndo, sortOrder, isDragDisabled }) {
                             <TodoItem
                                 key={todo.id}
                                 todo={todo}
+                                loggedInUser={loggedInUser}
                                 onAction={() => onUndo(todo.id)}
                                 buttonClassName="btn btn-warning"
                                 actionText="Undo"
