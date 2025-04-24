@@ -120,7 +120,12 @@ function App() {
                 onLogout={handleLogout}
                 loggedInUser={loggedInUser}
             />
-            <TodoContainer todos={todos} setTodos={setTodos} users={users} />
+            <TodoContainer
+                todos={todos}
+                setTodos={setTodos}
+                users={users}
+                loggedInUser = {loggedInUser}
+            />
             <div className="container my-3 d-flex justify-content-center">
                 <button
                     className="btn btn-danger"

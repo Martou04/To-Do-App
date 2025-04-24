@@ -5,7 +5,7 @@ import UncompletedTodos from './UncompletedTodos';
 import CompletedTodos from './CompletedTodos';
 import FilterByUsername from './FilterByUsername';
 
-function TodoContainer({ todos, setTodos, users }) {
+function TodoContainer({ todos, setTodos, users, loggedInUser }) {
   const [uncompletedSortOrder, setUncompletedSortOrder] = useState('asc');
   const [completedSortOrder, setCompletedSortOrder] = useState('asc');
   const [selectedUserId, setSelectedUserId] = useState(null);
@@ -17,6 +17,18 @@ function TodoContainer({ todos, setTodos, users }) {
   }, [todos, selectedUserId]);
 
   const handleComplete = (id) => {
+    if (!loggedInUser || loggedInUser.id === null) {
+      alert("You must be logged into your account to complete your todos.");
+      return;
+    }
+
+    const todoToComplete = todos.find(todo => todo.id === id);
+
+    if (todoToComplete && todoToComplete.userId !== loggedInUser.id) {
+      alert("You can only complete your own todos!");
+      return;
+    }
+
     setTodos(prevTodos =>
       prevTodos.map(todo =>
         todo.id === id
@@ -27,6 +39,17 @@ function TodoContainer({ todos, setTodos, users }) {
   };
 
   const handleUndo = (id) => {
+    if (!loggedInUser || loggedInUser.id === null) {
+      alert("You must be logged into your account to uncomplete your todos.");
+      return;
+    }
+
+    const todoToUncomplete = todos.find(todo => todo.id === id);
+    if (todoToUncomplete && todoToUncomplete.userId !== loggedInUser.id) {
+      alert("You can only uncomplete your own todos!");
+      return;
+    }
+
     setTodos(prevTodos =>
       prevTodos.map(todo =>
         todo.id === id
@@ -39,11 +62,11 @@ function TodoContainer({ todos, setTodos, users }) {
   const onDragEnd = (result) => {
     const { source, destination, draggableId } = result;
 
-    if (!destination) 
+    if (!destination)
       return;
 
     const draggedTodo = todos.find(todo => todo.id.toString() === draggableId);
-    if (!draggedTodo) 
+    if (!draggedTodo)
       return;
 
     if (source.droppableId !== destination.droppableId) {
