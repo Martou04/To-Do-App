@@ -20,4 +20,4 @@ function TodoItem({ todo, onAction, buttonClassName, actionText }) {
 }
 
 
-export default TodoItem
+export default TodoItem;

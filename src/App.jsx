@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import TodoContainer from './components/TodoContainer';
+import Navbar from './components/Navbar';
 
 function App() {
     const [todos, setTodos] = useState([]);
     const [users, setUsers] = useState([]);
+    const [loggedInUser, setLoggedInUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -54,8 +56,16 @@ function App() {
     }
 
     return (
-        <TodoContainer todos={todos} setTodos={setTodos} users={users} />
+        <>
+            <Navbar
+                users={users}
+                onLogin={setLoggedInUser}
+                onLogout={() => setLoggedInUser(null)}
+                loggedInUser={loggedInUser}
+            />
+            <TodoContainer todos={todos} setTodos={setTodos} users={users} />
+        </>
     );
 }
 
-export default App
+export default App;
