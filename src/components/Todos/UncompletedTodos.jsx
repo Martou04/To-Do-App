@@ -4,7 +4,7 @@ import { Draggable } from "@hello-pangea/dnd";
 import TodoItem from "./TodoItem";
 import PaginationButton from "../UI/PaginationButton";
 
-function UncompletedTodos({ todos, loggedInUser, onComplete, sortOrder, isDragDisabled }) {
+function UncompletedTodos({ todos, loggedInUser, draggedTodoId, onComplete, sortOrder, isDragDisabled }) {
     const [itemsToShow, setItemsToShow] = useState(10);
 
     const allUncompleted = todos.filter(todo => !todo.completed);
@@ -43,14 +43,17 @@ function UncompletedTodos({ todos, loggedInUser, onComplete, sortOrder, isDragDi
                             {...provided.draggableProps}
                             {...provided.dragHandleProps}
                         >
-                            <TodoItem
-                                key={todo.id}
-                                todo={todo}
-                                loggedInUser={loggedInUser}
-                                onAction={() => onComplete(todo.id)}
-                                buttonClassName="btn btn-success"
-                                actionText="Complete"
-                            />
+                            <div className={todo.id === draggedTodoId ? "animate__animated animate__pulse" : ""}>
+
+                                <TodoItem
+                                    key={todo.id}
+                                    todo={todo}
+                                    loggedInUser={loggedInUser}
+                                    onAction={() => onComplete(todo.id)}
+                                    buttonClassName="btn btn-success"
+                                    actionText="Complete"
+                                />
+                            </div>
                         </div>
                     )}
                 </Draggable>

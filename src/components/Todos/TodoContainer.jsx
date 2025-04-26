@@ -9,6 +9,7 @@ function TodoContainer({ todos, setTodos, users, loggedInUser }) {
   const [uncompletedSortOrder, setUncompletedSortOrder] = useState('asc');
   const [completedSortOrder, setCompletedSortOrder] = useState('asc');
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [draggedTodoId, setDraggedTodoId] = useState(null);
 
   const filteredTodos = useMemo(() => {
     return selectedUserId
@@ -76,6 +77,8 @@ function TodoContainer({ todos, setTodos, users, loggedInUser }) {
         handleUndo(draggedTodo.id);
       }
     }
+
+    setDraggedTodoId(draggedTodo.id);
   }
 
   return (
@@ -112,6 +115,7 @@ function TodoContainer({ todos, setTodos, users, loggedInUser }) {
                     <UncompletedTodos
                       todos={filteredTodos}
                       loggedInUser={loggedInUser}
+                      draggedTodoId={draggedTodoId}
                       onComplete={handleComplete}
                       sortOrder={uncompletedSortOrder}
                       isDragDisabled={false}
@@ -145,6 +149,7 @@ function TodoContainer({ todos, setTodos, users, loggedInUser }) {
                     <CompletedTodos
                       todos={filteredTodos}
                       loggedInUser={loggedInUser}
+                      draggedTodoId={draggedTodoId}
                       onUndo={handleUndo}
                       sortOrder={completedSortOrder}
                       isDragDisabled={false}
