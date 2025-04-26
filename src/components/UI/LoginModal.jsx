@@ -44,7 +44,7 @@ function LoginModal({ usernameInput, setUsernameInput, handleLogin, showError, s
                             autoFocus
                         />
                         {showError && (
-                            <div className="invalid-feedback">
+                            <div className="invalid-feedback animate__animated animate__shakeX">
                                 User not found. Please try again.
                             </div>
                         )}
