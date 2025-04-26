@@ -3,7 +3,7 @@ import { DragDropContext, Droppable } from '@hello-pangea/dnd'
 
 import UncompletedTodos from './UncompletedTodos';
 import CompletedTodos from './CompletedTodos';
-import FilterByUsername from './FilterByUsername';
+import FilterByUsername from '../Filters/FilterByUsername';
 
 function TodoContainer({ todos, setTodos, users, loggedInUser }) {
   const [uncompletedSortOrder, setUncompletedSortOrder] = useState('asc');

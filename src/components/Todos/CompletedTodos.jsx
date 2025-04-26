@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TodoItem from "./TodoItem";
-import PaginationButton from "./PaginationButton";
+import PaginationButton from "../UI/PaginationButton";
 import { Draggable } from "@hello-pangea/dnd";
 
 function CompletedTodos({ todos, loggedInUser, onUndo, sortOrder, isDragDisabled }) {

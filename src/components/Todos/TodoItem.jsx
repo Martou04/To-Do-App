@@ -5,9 +5,11 @@ function TodoItem({ todo, loggedInUser, onAction, buttonClassName, actionText })
                 <p className="mb-1 fw-bold">{todo.title}</p>
                 {todo.completed && (
                     <p className="mb-0 text-muted">
-                        <strong>Completed at: </strong> {todo.completedDate
+                        <strong>Completed at: </strong>
+                        {todo.completedDate
                             ? new Date(todo.completedDate).toLocaleString()
-                            : "No completion date available"}
+                            : "No completion date available"
+                        }
                     </p>
                 )}
             </div>

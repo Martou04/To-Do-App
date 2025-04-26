@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Draggable } from "@hello-pangea/dnd";
 
 import TodoItem from "./TodoItem";
-import PaginationButton from "./PaginationButton";
+import PaginationButton from "../UI/PaginationButton";
 
 function UncompletedTodos({ todos, loggedInUser, onComplete, sortOrder, isDragDisabled }) {
     const [itemsToShow, setItemsToShow] = useState(10);

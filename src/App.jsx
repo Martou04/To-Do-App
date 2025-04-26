@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
-import TodoContainer from './components/TodoContainer';
-import Navbar from './components/Navbar';
+import TodoContainer from './components/todos/TodoContainer';
+import Navbar from './components/UI/Navbar';
 
 function App() {
     const [todos, setTodos] = useState([]);
