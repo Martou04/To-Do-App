@@ -31,7 +31,11 @@ function LoginModal({ usernameInput, setUsernameInput, handleLogin, showError, s
                         <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div className="modal-body">
+                        <label htmlFor="usernameInput" className="form-label">
+                            Username:
+                        </label>
                         <input
+                            id="usernameInput"
                             type="text"
                             className={`form-control ${showError ? 'is-invalid' : ''}`}
                             placeholder="Enter username"

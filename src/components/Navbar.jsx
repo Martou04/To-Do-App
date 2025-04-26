@@ -1,7 +1,7 @@
 import { useState } from "react";
 import LoginModal from "./LoginModal";
 
-function Navbar({ users, onLogin, onLogout, loggedInUser }) {
+function Navbar({ users, loggedInUser, saveLoggedInUser, removeLoggedInUser }) {
     const [usernameInput, setUsernameInput] = useState('');
     const [showError, setShowError] = useState(false);
 
@@ -11,7 +11,7 @@ function Navbar({ users, onLogin, onLogout, loggedInUser }) {
         );
 
         if (user) {
-            onLogin(user);
+            saveLoggedInUser(user);
             setUsernameInput('');
             setShowError(false);
         } else {
@@ -36,7 +36,7 @@ function Navbar({ users, onLogin, onLogout, loggedInUser }) {
                     : (
                         <div className="d-flex gap-3 align-items-center">
                             <span className="fw-semibold">Welcome, {loggedInUser.name}</span>
-                            <button className="btn btn-outline-danger btn-sm" onClick={onLogout}>Logout</button>
+                            <button className="btn btn-outline-danger btn-sm" onClick={removeLoggedInUser}>Logout</button>
                         </div>
                     )}
             </nav>

@@ -91,7 +91,9 @@ function TodoContainer({ todos, setTodos, users, loggedInUser }) {
                 />
               </div>
               <div className="col-6">
+                <label htmlFor="sortByTitle">Sort: </label>
                 <select
+                  id="sortByTitle"
                   className="form-select"
                   value={uncompletedSortOrder}
                   onChange={(e) => setUncompletedSortOrder(e.target.value)}
@@ -123,7 +125,9 @@ function TodoContainer({ todos, setTodos, users, loggedInUser }) {
 
           <div className="col-12 col-md-6 ps-md-4">
             <div className="mb-4">
+              <label htmlFor="sortByDate">Sort: </label>
               <select
+                id="sortByDate"
                 className="form-select"
                 value={completedSortOrder}
                 onChange={(e) => setCompletedSortOrder(e.target.value)}

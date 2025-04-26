@@ -78,11 +78,11 @@ function App() {
         }
     };
 
-    const handleLogin = (user) => {
+    const saveLoggedInUser = (user) => {
         setLoggedInUser(user);
     }
 
-    const handleLogout = () => {
+    const removeLoggedInUser = () => {
         setLoggedInUser(null);
     }
 
@@ -116,15 +116,15 @@ function App() {
         <>
             <Navbar
                 users={users}
-                onLogin={handleLogin}
-                onLogout={handleLogout}
                 loggedInUser={loggedInUser}
+                saveLoggedInUser={saveLoggedInUser}
+                removeLoggedInUser={removeLoggedInUser}
             />
             <TodoContainer
                 todos={todos}
-                setTodos={setTodos}
                 users={users}
-                loggedInUser = {loggedInUser}
+                loggedInUser={loggedInUser}
+                setTodos={setTodos}
             />
             <div className="container my-3 d-flex justify-content-center">
                 <button
